@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <title>Country Info App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Country Information</h1>
+      <div class="controls">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="search" placeholder="Search..." />
+        </div>
+        <div class="select-wrapper">
+          <select id="sort">
+            <option value="name">Sort by Name</option>
+            <option value="population">Sort by Population</option>
+            <option value="region">Sort by Region</option>
+          </select>
+          <i class="fas fa-sort"></i>
+        </div>
+        <button id="theme-toggle">
+          <i id="theme-icon" class="fas fa-sun"></i>
+        </button>
+      </div>
+    </header>
+    <main id="countries-container"></main>
+    <p id="no-results" style="display: none">No countries found.</p>
+    <div id="pagination"></div>
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 Country Info App. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
