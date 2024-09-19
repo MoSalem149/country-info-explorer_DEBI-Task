@@ -63,4 +63,4 @@ The app consists of the following screens:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/MoSalem149v2/Country-Info-Explorer.git
+   git clone https://github.com/MoSalem149/Country-Info-Explorer.git
