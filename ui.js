@@ -12,25 +12,29 @@ export function displayCountries(countries) {
         <h3>${country.name.common}</h3>
       </div>
       <div class="country-card-body">
-    <p><i class="fas fa-city"></i> <strong>Capital:</strong> ${
-      country.capital
-    }</p>
-    <p><i class="fas fa-globe"></i> <strong>Region:</strong> ${
-      country.region
-    }</p>
-    <p><i class="fas fa-users"></i> <strong>Population:</strong> ${country.population.toLocaleString()}</p>
-    <p><i class="fas fa-language"></i> <strong>Languages:</strong> ${Object.values(
-      country.languages
-    ).join(", ")}</p>
-    <p><i class="fas fa-money-bill-wave"></i> <strong>Currencies:</strong> ${Object.values(
-      country.currencies
-    )
-      .map((c) => c.name)
-      .join(", ")}</p>
-</div>
+        <p><i class="fas fa-city"></i> <strong>Capital:</strong> ${
+          country.capital ? country.capital[0] : "N/A"
+        }</p>
+        <p><i class="fas fa-globe"></i> <strong>Region:</strong> ${
+          country.region || "N/A"
+        }</p>
+        <p><i class="fas fa-users"></i> <strong>Population:</strong> ${
+          country.population ? country.population.toLocaleString() : "N/A"
+        }</p>
+        <p><i class="fas fa-language"></i> <strong>Languages:</strong> ${
+          country.languages ? Object.values(country.languages).join(", ") : "N/A"
+        }</p>
+        <p><i class="fas fa-money-bill-wave"></i> <strong>Currencies:</strong> ${
+          country.currencies
+            ? Object.values(country.currencies)
+                .map((c) => c.name)
+                .join(", ")
+            : "N/A"
+        }</p>
+      </div>
     `;
     card.addEventListener("click", () => {
-      window.location.href = `details.html?country=${country.name.common}`;
+      window.location.href = `details.html?country=${encodeURIComponent(country.name.common)}`;
     });
     container.appendChild(card);
   });
