@@ -7,13 +7,11 @@ const itemsPerPage = 20;
 
 async function init() {
   countries = await fetchCountries();
-  if (!countries.length) return;
   displayCountries(paginate(countries, currentPage));
   renderPagination(countries.length, itemsPerPage, paginateAndDisplay);
 }
 
-
-function paginate(countries = [], page) {
+function paginate(countries, page) {
   const start = (page - 1) * itemsPerPage;
   const end = page * itemsPerPage;
   return countries.slice(start, end);
