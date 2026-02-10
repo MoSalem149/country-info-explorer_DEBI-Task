@@ -1,7 +1,12 @@
 export async function fetchCountries() {
   try {
-    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,languages,currencies");
-    if (!response.ok) throw new Error("Network response was not ok");
+    const response = await fetch(
+      "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,languages,currencies,subregion,timezones,borders"
+    );
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
     const data = await response.json();
 
@@ -11,8 +16,7 @@ export async function fetchCountries() {
 
     return filteredData;
   } catch (error) {
-    document.getElementById("countries-container").innerHTML =
-      "<p>Failed to load country data.</p>";
     console.error("Error fetching country data:", error);
+    throw error;
   }
 }
