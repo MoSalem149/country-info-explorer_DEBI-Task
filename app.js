@@ -6,9 +6,14 @@ let currentPage = 1;
 const itemsPerPage = 20;
 
 async function init() {
-  countries = await fetchCountries();
-  displayCountries(paginate(countries, currentPage));
-  renderPagination(countries.length, itemsPerPage, paginateAndDisplay);
+  try {
+    countries = await fetchCountries();
+    displayCountries(paginate(countries, currentPage));
+    renderPagination(countries.length, itemsPerPage, paginateAndDisplay);
+  } catch (error) {
+    document.getElementById("countries-container").innerHTML =
+      "<p>Failed to load country data.</p>";
+  }
 }
 
 function paginate(countries, page) {
