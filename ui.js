@@ -1,38 +1,28 @@
 export function displayCountries(countries) {
   const container = document.getElementById("countries-container");
   container.innerHTML = "";
+
   countries.forEach((country) => {
-    const card = document.createElement("div");
-    card.className = "country-card";
-    card.innerHTML = `
-      <div class="country-card-header">
-        <img src="${country.flags.svg}" alt="Flag of ${
-      country.name.common
-    }" class="country-flag">
+    const languages = country.languages
+      ? Object.values(country.languages).join(", ")
+      : "N/A";
+
+    const currencies = country.currencies
+      ? Object.values(country.currencies)
+          .map((c) => c.name)
+          .join(", ")
+      : "N/A";
+
+    container.innerHTML += `
+      <div class="country-card">
+        <img src="${country.flags?.svg}" alt="Flag of ${country.name.common}">
         <h3>${country.name.common}</h3>
+        <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
+        <p><strong>Region:</strong> ${country.region}</p>
+        <p><strong>Languages:</strong> ${languages}</p>
+        <p><strong>Currencies:</strong> ${currencies}</p>
       </div>
-      <div class="country-card-body">
-    <p><i class="fas fa-city"></i> <strong>Capital:</strong> ${
-      country.capital
-    }</p>
-    <p><i class="fas fa-globe"></i> <strong>Region:</strong> ${
-      country.region
-    }</p>
-    <p><i class="fas fa-users"></i> <strong>Population:</strong> ${country.population.toLocaleString()}</p>
-    <p><i class="fas fa-language"></i> <strong>Languages:</strong> ${Object.values(
-      country.languages
-    ).join(", ")}</p>
-    <p><i class="fas fa-money-bill-wave"></i> <strong>Currencies:</strong> ${Object.values(
-      country.currencies
-    )
-      .map((c) => c.name)
-      .join(", ")}</p>
-</div>
     `;
-    card.addEventListener("click", () => {
-      window.location.href = `details.html?country=${country.name.common}`;
-    });
-    container.appendChild(card);
   });
 }
 
